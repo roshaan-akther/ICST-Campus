@@ -3,456 +3,1344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICST University</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>International Campus for Science & Technology - Innovate, Educate, Inspire</title>
+
+    <!-- Google Fonts: Poppins (for headings) and Open Sans (for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OerwbAyx54p+R83r5jJXd4v2XbQ8Rz+Q8w/X+5" crossorigin="anonymous">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
+        /* Modern Color Palette */
+        :root {
+            --primary-color: #004080; /* Deep Blue */
+            --secondary-color: #6c757d; /* Muted Grey */
+            --accent-color: #3498db; /* Vibrant Blue */
+            --text-dark: #212529;
+            --text-light: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e4eb;
+        }
+
+        /* Base Styles */
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f8f8f8; /* Light background for the whole page */
-            color: #333; /* Default text color */
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
         }
 
-        /* General element styling for Apple-like feel */
-        .rounded-xl { border-radius: 1rem !important; }
-        .rounded-2xl { border-radius: 2rem !important; }
-        .shadow-subtle { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important; }
-        .shadow-md-hover:hover { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important; }
-        .transition-ease { transition: all 0.3s ease-in-out; }
-
-        /* Header Navigation */
-        .navbar-brand {
-            font-weight: 800; /* Extra bold for brand */
-            letter-spacing: -0.02em;
-        }
-        .nav-link {
-            font-weight: 500; /* Medium weight for nav links */
-            color: rgba(255, 255, 255, 0.7) !important;
-            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-        }
-        .nav-link:hover {
-            color: white !important;
-            background-color: rgba(255, 255, 255, 0.1) !important; /* Subtle hover background */
-        }
-
-        /* Showcase Section */
-        .showcase-section {
-            background-image: url('https://media.licdn.com/dms/image/v2/D5622AQEfPRMwspTdCA/feedshare-shrink_800/B56ZUZH44pGUAg-/0/1739883279020?e=2147483647&v=beta&t=ex8pasORf80atl6mCJilphGrKfrp5wKcoWrDAQGM9WY'); /* Darker, professional placeholder */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 700px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 3rem 2rem; /* Increased padding */
-            color: white;
-            position: relative; /* For overlay */
-        }
-        .showcase-section::before { /* Subtle overlay for better text contrast */
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
-            z-index: 0;
-        }
-        .showcase-section > * {
-            position: relative; /* Bring content above overlay */
-            z-index: 1;
-        }
-
-        .showcase-search-input {
-            background-color: rgba(255, 255, 255, 0.9) !important; /* Slightly transparent white */
-            border: 1px solid rgba(0, 0, 0, 0.1) !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-            color: #333 !important;
-            padding: 0.8rem 1.5rem;
-            font-weight: 500;
-        }
-        .showcase-search-input::placeholder {
-            color: rgba(0, 0, 0, 0.5) !important;
-        }
-        .showcase-search-button {
-            background-color: #007aff !important; /* Apple blue */
-            border-color: #007aff !important;
-            color: white !important;
-            font-weight: 600 !important;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-        .showcase-search-button:hover {
-            background-color: #005bb5 !important;
-            border-color: #005bb5 !important;
-        }
-
-        .showcase-text {
-            font-size: 3.5rem; /* Default large text */
-            font-weight: 900; /* Ultra bold */
-            letter-spacing: -0.05em; /* Tighter letter spacing */
-            margin-bottom: 3rem;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-        }
-
-        @media (min-width: 768px) {
-            .showcase-text { font-size: 5rem; }
-        }
-        @media (min-width: 992px) {
-            .showcase-text { font-size: 6rem; }
-        }
-        @media (min-width: 1200px) {
-            .showcase-text { font-size: 7.5rem; }
-        }
-
-        /* News Cards */
-        .news-card {
-            border-radius: 1rem;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .news-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-        .news-card img {
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            height: 200px; /* Fixed height for consistency */
-            object-fit: cover;
-        }
-        .news-card .card-title {
-            font-weight: 600; /* Semi-bold for headlines */
-            color: #212529;
-            line-height: 1.3;
-        }
-        .news-card .card-text {
-            font-weight: 400;
-            color: #6c757d;
-        }
-
-        /* Campus Life Section */
-        .campus-life-section {
-            background-image: url('https://img.freepik.com/free-photo/front-view-young-people-hostel_23-2150446750.jpg?semt=ais_hybrid&w=740'); /* Muted blue/grey */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 550px; /* Slightly taller */
-            display: flex;
-            align-items: center;
-            padding: 3rem 2rem;
-            color: white;
-            position: relative;
-        }
-        .campus-life-section::before { /* Subtle overlay */
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
-            z-index: 0;
-        }
-        .campus-life-section > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .campus-life-text {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 1.05; /* Tighter line height */
-            letter-spacing: -0.05em;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-        }
-        @media (min-width: 768px) {
-            .campus-life-text { font-size: 4rem; }
-        }
-        @media (min-width: 992px) {
-            .campus-life-text { font-size: 5rem; }
-        }
-
-        /* Become an ICST Student Section Cards */
-        .student-apply-card, .lecturer-apply-card {
-            border-radius: 1.5rem; /* More rounded */
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            padding: 3rem; /* More internal padding */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            min-height: 350px; /* Ensure consistent height */
-        }
-        .student-apply-card:hover, .lecturer-apply-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-        }
-
-        .student-apply-card {
-            background-color: #007aff; /* Apple blue */
-            color: white;
-        }
-        .lecturer-apply-card {
-            background-color: #34c759; /* Apple green */
-            color: white;
-        }
-
-        .apply-card-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        .apply-card-text {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-        .apply-button {
-            background-color: white !important;
-            color: #007aff !important; /* Blue for student button */
-            border-radius: 2rem;
-            padding: 0.8rem 2.5rem;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
             font-weight: 600;
-            letter-spacing: 0.02em;
-            text-transform: none; /* No uppercase */
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
         }
-        .lecturer-apply-card .apply-button {
-            color: #34c759 !important; /* Green for lecturer button */
+
+        /* Global Section Padding */
+        section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1; /* Ensure content is above any background effects */
         }
-        .apply-button:hover {
-            background-color: #f0f0f0 !important;
+
+        section:nth-of-type(even) {
+            background-color: var(--bg-white);
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s ease-in-out;
+            padding: 1rem 0;
+            backdrop-filter: blur(8px); /* Subtle blur effect */
+            -webkit-backdrop-filter: blur(8px); /* Safari compatibility */
+            z-index: 1050; /* Ensure navbar is always on top */
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            height: 45px; /* Larger logo */
+            transition: height 0.4s ease-in-out;
+        }
+
+        .navbar.scrolled .navbar-brand img {
+            height: 35px; /* Smaller logo on scroll */
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-color) !important;
+            padding: 0.5rem 1.2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
             transform: translateY(-2px);
         }
 
-
-        /* Build and Innovate Section */
-        .quote-section {
-            background-color: #1a1a1a; /* Dark background */
-            color: white;
-            padding: 5rem 2rem; /* More padding */
-        }
-        .quotation-text {
-            font-size: 2.5rem;
-            font-weight: 700; /* Bold */
-            line-height: 1.4;
-            max-width: 1000px; /* Wider quote */
-            letter-spacing: -0.02em;
-            font-style: italic; /* Slightly more subtle italics */
-            opacity: 0.95;
-        }
-        @media (min-width: 768px) {
-            .quotation-text { font-size: 3.25rem; }
-        }
-        .author-text {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 1.5rem;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease-out;
+            transform: translateX(-50%);
         }
 
-        /* About ICST Section */
-        .about-section {
-            background-color: #ffffff; /* Clean white background */
-            padding: 5rem 2rem;
+        .nav-link:hover::after {
+            width: 80%;
         }
-        .about-section h2 {
-            font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-            color: #212529;
+
+        .navbar-toggler {
+            border: none;
         }
-        .about-section p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #555;
-            max-width: 850px;
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Off-canvas mobile menu */
+        .offcanvas {
+            background-color: var(--bg-white);
+        }
+
+        .offcanvas .nav-link {
+            display: block;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--border-color) 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* For particle background */
+            padding: 120px 20px 60px; /* Adjust padding for sticky header */
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        #home .hero-content {
+            position: relative;
+            z-index: 1; /* Content above particles */
+            max-width: 900px;
+        }
+
+        #home h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+        }
+
+        #home p.lead {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out 0.3s forwards; /* Delayed animation */
+        }
+
+        #home .btn-primary {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            padding: 16px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out 0.6s forwards; /* Further delayed */
+        }
+
+        #home .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        @keyframes fadeInSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- General Section Styling --- */
+        .section-heading {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            overflow: hidden; /* For image border-radius */
+            background-color: var(--bg-white);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: inline-block; /* For better alignment */
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 30px;
+            padding: 10px 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* --- About Us Section --- */
+        #about {
+            background: linear-gradient(180deg, var(--bg-white) 0%, #f0f2f5 100%);
+        }
+
+        #about .about-img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #about h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        /* --- Academics Section --- */
+        /* Program card enhancements, modal will open */
+        .program-card-modal-trigger {
+            cursor: pointer;
+        }
+
+        /* --- Research Section --- */
+        #research {
+            background-color: var(--bg-light);
+        }
+
+        #research .research-img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #research h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+
+        /* --- Facilities & Labs Section --- */
+        #facilities .carousel-item img {
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #facilities .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        #facilities .carousel-caption h5 {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        #facilities .carousel-caption p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* --- Gallery Section (Campus Life) --- */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 64, 128, 0.7); /* Primary color with transparency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h5 {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay h5 {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- News & Events Section --- */
+        .news-card {
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .news-card .card-body {
+            padding: 25px;
+        }
+
+        .news-card .card-title {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .news-card .text-muted {
+            font-size: 0.9rem;
+        }
+
+        /* --- Admissions Section --- */
+        #admissions {
+            background: linear-gradient(45deg, var(--primary-color) 0%, #0056b3 100%);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #admissions h2 {
+            color: var(--text-light);
+        }
+
+        #admissions p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Footer */
-        .footer {
-            background-color: #1a1a1a; /* Darker footer */
+        #admissions .btn-light {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        #admissions .btn-light:hover {
+            background-color: #e0e4eb;
+            color: var(--primary-color);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--bg-white);
+        }
+
+        #contact .form-control {
+            border-radius: 10px;
+            padding: 14px 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #contact .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+
+        #contact .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        #contact .btn-primary:hover {
+            background-color: #003366;
+            border-color: #003366;
+            transform: translateY(-2px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #1a1a1a;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 0;
+            font-size: 0.95rem;
+        }
+
+        footer h5 {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            margin-top: 40px;
             color: rgba(255, 255, 255, 0.6);
-            padding: 2.5rem 1rem;
-            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                padding: 1rem;
+                border-radius: 8px;
+                margin-top: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            .navbar-nav {
+                align-items: flex-start;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: left;
+                padding: 0.75rem 1rem;
+            }
+            .nav-link::after {
+                left: 0;
+                transform: translateX(0);
+                width: 0;
+            }
+            .nav-link:hover::after {
+                width: 30px;
+            }
+            #home h1 {
+                font-size: 3rem;
+            }
+            #home p.lead {
+                font-size: 1.2rem;
+            }
+            .section-heading {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+            section {
+                padding: 80px 0;
+            }
+            #facilities .carousel-item img {
+                height: 300px;
+            }
+            .gallery-item img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            #home h1 {
+                font-size: 2.5rem;
+            }
+            #home p.lead {
+                font-size: 1rem;
+            }
+            #home .btn-primary {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+            .section-heading {
+                font-size: 2rem;
+            }
+            .card-title {
+                font-size: 1.5rem;
+            }
+            .feature-icon {
+                font-size: 2.8rem;
+            }
+            #facilities .carousel-item img {
+                height: 250px;
+            }
+            .gallery-item img {
+                height: 180px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="bg-dark text-white py-3 shadow-subtle fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
-            <a class="navbar-brand" href="#">ICST</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://icst.edu.lk/wp-content/uploads/2023/11/ICST-Logo-Final@4x-1.png" alt="University Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Education</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Research</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Innovation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Admissions+Aid</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Campus Life</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">Alumni</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded-2xl mx-1" href="#">About</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Showcase Section -->
-    <section class="showcase-section text-white d-flex flex-column justify-content-between align-items-center text-center">
-        <!-- Mock Search Bar at the top -->
-        <div class="w-100 mt-5 pt-5"> <!-- Added pt-5 for spacing from fixed header -->
-            <div class="input-group mb-3 mx-auto" style="max-width: 650px;">
-                <input type="text" class="form-control form-control-lg rounded-pill-start border-0 shadow-sm showcase-search-input" placeholder="Search ICST: Programs, Research, Events..." aria-label="Search ICST">
-                <button class="btn showcase-search-button rounded-pill-end shadow-sm" type="button">Search</button>
-            </div>
-        </div>
-        <!-- Text at the bottom -->
-        <h1 class="showcase-text px-3">
-            A world with ICST.
-        </h1>
-    </section>
-
-    <!-- News Section -->
-    <section class="py-5 bg-light">
-        <div class="container py-4">
-            <h2 class="text-center mb-5 fw-bold text-dark">Latest News</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- News Card 1 -->
-                <div class="col">
-                    <div class="card news-card h-100 transition-ease">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-cNKjgqvt8ewGpP7aCNeDjNdBXZlFbMjnWA&s" class class="card-img-top" alt="News Image: AI Research">
-                        <div class="card-body">
-                            <h3 class="card-title fs-5 mb-2">Breakthrough in AI Research Announced</h3>
-                            <p class="card-text small">October 26, 2024</p>
-                        </div>
-                    </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <!-- News Card 2 -->
-                <div class="col">
-                    <div class="card news-card h-100 transition-ease">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqFxrMJcovcsuLh3KnBupNU72I3Djx0nASdqSO1OsYR3zXOA2OJD57Oz6eqEMscZ3J64s&usqp=CAU" class="card-img-top" alt="News Image: Robotics Competition">
-                        <div class="card-body">
-                            <h3 class="card-title fs-5 mb-2">ICST Students Win National Robotics Competition</h3>
-                            <p class="card-text small">October 20, 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- News Card 3 -->
-                <div class="col">
-                    <div class="card news-card h-100 transition-ease">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm0mnt8dON2dOYQajw6DMbNyal6oHXB4ZHR2P0q_j2QTrUdENaiGr0qZRnJ_lwUyypzXU&usqp=CAU" class="card-img-top" alt="News Image: Sustainability Initiative">
-                        <div class="card-body">
-                            <h3 class="card-title fs-5 mb-2">New Sustainability Initiative Launched on Campus</h3>
-                            <p class="card-text small">October 15, 2024</p>
-                        </div>
-                    </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#academics">Academics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#facilities">Facilities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#research">Research</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#labs">Labs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#news">News & Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#admissions">Admissions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1>Innovate. Educate. Inspire.</h1>
+            <p class="lead">A world-class institution dedicated to shaping the future through excellence in education and groundbreaking research.</p>
+            <a href="#academics" class="btn btn-primary btn-lg">Explore Programs <i data-lucide="arrow-right"></i></a>
+        </div>
     </section>
 
-    <!-- Campus Life Section -->
-    <section class="campus-life-section d-flex align-items-center">
+    <!-- About Us Section -->
+    <section id="about">
         <div class="container">
-            <div class="col-md-7 col-lg-6 px-4">
-                <h2 class="campus-life-text text-start">
-                    Joy.<br>
-                    Learn.<br>
-                    Connect.
-                </h2>
-            </div>
-        </div>
-    </section>
-
-    <!-- Become an ICST Student Section -->
-    <section class="py-5 bg-white">
-        <div class="container py-4">
-            <h2 class="text-center mb-5 fw-bold text-dark">Become an ICST Student</h2>
-            <div class="row g-4">
-                <!-- Apply for a student -->
-                <div class="col-md-6">
-                    <div class="student-apply-card transition-ease">
-                        <h3 class="apply-card-title">Apply for a Student</h3>
-                        <p class="apply-card-text">Start your journey to academic excellence and innovation.</p>
-                        <a href="#" class="btn apply-button">Learn More & Apply</a>
-                    </div>
+            <h2 class="section-heading">About Our University</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGNhbXB1c3xlbnwwfHwwfHx8MA%3D%3D" alt="University Campus" class="img-fluid rounded about-img">
                 </div>
-                <!-- Apply for a lecturer -->
-                <div class="col-md-6">
-                    <div class="lecturer-apply-card transition-ease">
-                        <h3 class="apply-card-title">Apply for a Lecturer</h3>
-                        <p class="apply-card-text">Join our esteemed faculty and shape the next generation of leaders.</p>
-                        <a href="#" class="btn apply-button">View Openings</a>
-                    </div>
+                <div class="col-lg-6">
+                    <h3>A Legacy of Excellence</h3>
+                    <p class="text-secondary">Founded in [Year], our university has consistently been at the forefront of academic innovation and community engagement. We are committed to providing a transformative educational experience that prepares students to become leaders and innovators in a rapidly changing world.</p>
+                    <p class="text-secondary">Our diverse community of scholars, researchers, and students collaborates across disciplines to tackle complex global challenges, pushing the boundaries of knowledge and making a lasting impact on society.</p>
+                    <a href="#contact" class="btn btn-outline-primary">Join Our Community <i data-lucide="external-link"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Build and Innovate Section -->
-    <section class="quote-section text-white">
-        <div class="container text-center">
-            <blockquote class="blockquote quotation-text mx-auto mb-0">
-                “Don’t learn to know. Learn to build. Don’t build to impress. Build to replace what’s broken.”
-            </blockquote>
-            <p class="author-text">
-                – Roshaan Akther
-            </p>
+    <!-- Academics Section -->
+    <section id="academics">
+        <div class="container">
+            <h2 class="section-heading">Our Academic Programs</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Undergraduate Studies Card -->
+                <div class="col">
+                    <div class="card program-card-modal-trigger" data-bs-toggle="modal" data-bs-target="#programModal" data-program="undergraduate">
+                        <div class="card-body text-center">
+                            <i data-lucide="graduation-cap" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Undergraduate Studies</h5>
+                            <p class="card-text text-secondary">Discover a wide range of bachelor's degree programs designed to ignite your passion and prepare you for a successful career.</p>
+                            <span class="btn btn-link">View Details <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Graduate Programs Card -->
+                <div class="col">
+                    <div class="card program-card-modal-trigger" data-bs-toggle="modal" data-bs-target="#programModal" data-program="graduate">
+                        <div class="card-body text-center">
+                            <i data-lucide="book-open" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Graduate Programs</h5>
+                            <p class="card-text text-secondary">Advance your expertise with our master's and doctoral programs, fostering advanced research and critical thinking skills.</p>
+                            <span class="btn btn-link">View Details <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Professional Development Card -->
+                <div class="col">
+                    <div class="card program-card-modal-trigger" data-bs-toggle="modal" data-bs-target="#programModal" data-program="professional">
+                        <div class="card-body text-center">
+                            <i data-lucide="briefcase" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Professional Development</h5>
+                            <p class="card-text text-secondary">Enhance your skills and career prospects with our short courses, certifications, and executive education programs.</p>
+                            <span class="btn btn-link">View Details <i data-lucide="arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About ICST Section -->
-    <section class="about-section">
-        <div class="container text-center">
-            <h2 class="mb-4">About ICST</h2>
-            <p>
-                Intensely curious and driven to explore, the people of ICST value rigorous analytical thinking, ingenuity, hands-on problem solving, and big new ideas. Stimulating, supportive, and playful, the ICST community becomes, for many students, a second home.
-            </p>
+    <!-- Program Detail Modal (for Academics Section) -->
+    <div class="modal fade" id="programModal" tabindex="-1" aria-labelledby="programModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title" id="programModalLabel">Program Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <h3 id="modalProgramTitle" class="mb-3 text-primary"></h3>
+                    <p id="modalProgramDescription" class="text-secondary"></p>
+                    <hr>
+                    <h4 class="mt-4">Key Features:</h4>
+                    <ul id="modalProgramFeatures" class="list-unstyled text-secondary">
+                        <li><i data-lucide="check-circle" class="text-success me-2"></i> Experienced Faculty</li>
+                        <li><i data-lucide="check-circle" class="text-success me-2"></i> State-of-the-art Curriculum</li>
+                        <li><i data-lucide="check-circle" class="text-success me-2"></i> Career Support & Internships</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-3">Apply Now <i data-lucide="external-link"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <h2 class="section-heading">Pioneering Research</h2>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <img src="https://scitechdaily.com/images/Neuronal-Brain-Cell-Damage-Concept-Illustration.jpg" alt="Research" class="img-fluid rounded research-img">
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <h3>Driving Innovation and Discovery</h3>
+                    <p class="lead text-secondary">Our university is at the forefront of groundbreaking research, addressing global challenges and contributing to a better future.</p>
+                    <p class="text-secondary">We foster an environment of intellectual curiosity and collaboration, supporting faculty and students in pursuing innovative projects across various disciplines, from artificial intelligence to sustainable energy. Explore our impact and how we are shaping tomorrow.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <span class="badge bg-primary-subtle text-primary p-2">
+                            <i data-lucide="microscope" class="me-1"></i> AI & Machine Learning
+                        </span>
+                        <span class="badge bg-primary-subtle text-primary p-2">
+                            <i data-lucide="leaf" class="me-1"></i> Environmental Science
+                        </span>
+                        <span class="badge bg-primary-subtle text-primary p-2">
+                            <i data-lucide="heart-pulse" class="me-1"></i> Biomedical Engineering
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-primary rounded-pill mt-4">View Research Areas <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities & Labs Section -->
+    <section id="facilities">
+        <div class="container">
+            <h2 class="section-heading">State-of-the-Art Facilities & Labs</h2>
+            <div id="facilitiesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-4 shadow">
+                    <div class="carousel-item active">
+                        <img src="https://png.pngtree.com/background/20240413/original/pngtree-d-render-of-a-modern-library-interior-featuring-white-study-desks-picture-image_8469915.jpg" class="d-block w-100" alt="Modern Library">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>The Grand Library</h5>
+                            <p>A hub of knowledge with extensive digital and physical resources for every discipline.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.stockcake.com/public/5/b/9/5b962655-433b-42c5-b96f-855b5954b450_large/advanced-robotics-lab-stockcake.jpg" class="d-block w-100" alt="Robotics Lab">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Robotics & AI Lab</h5>
+                            <p>Cutting-edge facility for research in automation, machine learning, and human-robot interaction.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://wallpapercat.com/w/full/8/b/d/172452-3840x2160-desktop-4k-football-wallpaper.jpg" class="d-block w-100" alt="Sports Arena">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Indoor Sports Complex</h5>
+                            <p>World-class facilities for athletic training, competitions, and recreational activities.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#facilitiesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#facilitiesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-primary">View All Facilities <i data-lucide="gallery-vertical-end"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs Overview (Categorized) -->
+    <section id="labs" class="bg-light">
+        <div class="container">
+            <h2 class="section-heading">Our Specialized Laboratories</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="atom" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Quantum Computing Lab</h5>
+                            <p class="card-text text-secondary">Exploring the frontiers of quantum information processing and algorithm development.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="dna" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Genomics & Proteomics Lab</h5>
+                            <p class="card-text text-secondary">Advanced research in genetic sequencing, protein analysis, and bioinformatics applications.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="plane" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Aerospace Engineering Lab</h5>
+                            <p class="card-text text-secondary">Dedicated to experimental aerodynamics, propulsion systems, and drone technology research.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="circuit-board" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Cyber Security Lab</h5>
+                            <p class="card-text text-secondary">Focused on network defense, cryptographic research, and digital forensics in a secure environment.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="flask-round" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Advanced Materials Lab</h5>
+                            <p class="card-text text-secondary">Developing and testing next-generation materials for various industrial and scientific applications.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <i data-lucide="cpu" class="feature-icon mb-3"></i>
+                            <h5 class="card-title">Data Science & AI Ethics Lab</h5>
+                            <p class="card-text text-secondary">Researching responsible AI development, big data analytics, and ethical implications of technology.</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">Explore Lab <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section (Campus Life & Moments) -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-heading">Campus Life & Vibrant Moments</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col gallery-item">
+                    <img src="https://media.istockphoto.com/id/878934088/photo/group-of-college-students-collaborating-on-project-in-library.jpg?s=612x612&w=0&k=20&c=UpsNnjXiD1lhiIOICkIFvgdcxs3_22F-GJgat_w3e1g=" alt="Student Collaboration" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Collaborative Learning</h5>
+                    </div>
+                </div>
+                <div class="col gallery-item">
+                    <img src="https://media.istockphoto.com/id/948400550/photo/students-in-balliol-college-oxford-england.jpg?s=612x612&w=0&k=20&c=HTHAY0WjnlJeYOM2ii60JRrMlZr50k--wpVqq3yYGrU=" alt="Green Campus" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Lush Green Campus</h5>
+                    </div>
+                </div>
+                <div class="col gallery-item">
+                    <img src="https://www.cos.net.au/c/wp-content/uploads/2022/04/DIPTI-Working-Header-Image-Dimensions.png" alt="Modern Classroom" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Engaging Classrooms</h5>
+                    </div>
+                </div>
+                <div class="col gallery-item">
+                    <img src="https://media.sciencephoto.com/f0/32/82/83/f0328283-800px-wm.jpg" alt="Research Team" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Research in Action</h5>
+                    </div>
+                </div>
+                <div class="col gallery-item">
+                    <img src="https://c1.wallpaperflare.com/preview/294/960/948/accomplishment-ceremony-education-graduation.jpg" alt="Graduation Ceremony" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Celebration of Success</h5>
+                    </div>
+                </div>
+                <div class="col gallery-item">
+                    <img src="https://gwtoday.gwu.edu/sites/g/files/zaxdzs5401/files/2023-04/190824_hj_convocation_freshman_day_of_service_109_1920x1280.jpeg" alt="Campus Event" class="img-fluid">
+                    <div class="gallery-overlay">
+                        <h5>Vibrant Campus Events</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-primary">View Full Gallery <i data-lucide="camera"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Events Section -->
+    <section id="news" class="bg-light">
+        <div class="container">
+            <h2 class="section-heading">Latest News & Events</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card news-card">
+                        <img src="https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/e0/Jason_Ionello_%26_Betty_Brant_%28Midtown_News_Anchors%29.png" class="card-img-top" alt="News Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title">University Hosts International AI Conference</h5>
+                            <p class="card-text text-muted mb-2">October 26, 2024</p>
+                            <p class="card-text text-secondary">Experts from around the globe gathered to discuss the future of artificial intelligence and its ethical implications.</p>
+                            <a href="#" class="btn btn-link p-0">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card news-card">
+                        <img src="https://inventionconvention.chicagoinnovation.com/wp-content/uploads/2024/05/TAMY6400-900x600.jpg" class="card-img-top" alt="Event Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Annual Student Innovation Showcase Announced</h5>
+                            <p class="card-text text-muted mb-2">November 15, 2024</p>
+                            <p class="card-text text-secondary">Mark your calendars! Our brightest student minds will present their groundbreaking projects.</p>
+                            <a href="#" class="btn btn-link p-0">View Details <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card news-card">
+                        <img src="https://media.licdn.com/dms/image/v2/D5612AQGvWnuBEYmTZg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1727328450487?e=2147483647&v=beta&t=TTi7e76mcfMV7XsKLMWtQk-LBZAtKqEnicToxGZ0sNw" class="card-img-top" alt="News Image 2">
+                        <div class="card-body">
+                            <h5 class="card-title">New Research Grant Awarded for Sustainable Energy</h5>
+                            <p class="card-text text-muted mb-2">September 30, 2024</p>
+                            <p class="card-text text-secondary">Our faculty team secures significant funding to advance renewable energy solutions.</p>
+                            <a href="#" class="btn btn-link p-0">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-primary">View All News & Events <i data-lucide="calendar"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Section -->
+    <section id="admissions">
+        <div class="container">
+            <h2 class="section-heading text-light">Begin Your Journey with Us</h2>
+            <p>Ready to join a community that inspires intellectual growth and personal development? Our admissions team is here to guide you every step of the way.</p>
+            <a href="#" class="btn btn-light btn-lg">Apply Now <i data-lucide="send"></i></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-heading">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form>
+                        <div class="mb-3">
+                            <label for="contactName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="contactEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="contactSubject">
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="contactMessage" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Send Message <i data-lucide="mail"></i></button>
+                    </form>
+                    <div class="mt-5 text-center">
+                        <h4>Find Us Here</h4>
+                        <p class="text-secondary">ICST University Park, Punanai, Srilanka.
+
+</p>
+                        <p class="text-secondary">Phone: <a href="tel:+1234567890" class="text-secondary text-decoration-none">+94 74 3444 444</a></p>
+                        <p class="text-secondary">Email: <a href="mailto:info@icst.edu.lk" class="text-secondary text-decoration-none">info@icst.edu.lk</a></p>
+                        <!-- Placeholder for interactive map -->
+                        <div class="mt-4">
+                            <img src="https://ctlf.org/wp-content/uploads/2019/12/harvard-map-google.jpg" alt="Map Placeholder" class="img-fluid rounded shadow-sm">
+                            <p class="text-muted mt-2">Click to view on Google Maps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container text-center">
-            &copy; 2024 ICST University. All rights reserved.
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>International Campus for Science & Technology</h5>
+                    <p>Dedicated to fostering a vibrant learning environment and making a global impact through innovation and research.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#academics">Academics</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#admissions">Admissions</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">Faculty & Staff</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Career Services</a></li>
+                        <li><a href="#">Campus Safety</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect With Us</h5>
+                    <p>ICST University Park, Punanai, Srilanka.</p>
+                    <p>Email: <a href="mailto:info@icst.edu.lk">info@icst.edu.lk</a></p>
+                    <p>Phone: <a href="tel:+94 74 3444 444">+94 74 3444 444</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; <span id="current-year"></span> International Campus for Science & Technology. All rights reserved.</p>
+                <div>
+                    <a href="#">Privacy Policy</a> |
+                    <a href="#">Terms of Service</a> |
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS CDN (Popper.js and Bootstrap JS bundle) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dynamic Copyright Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smart Sticky Header with blur
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Close offcanvas menu if open (for mobile)
+                    const offcanvasElement = document.getElementById('offcanvasNavbar');
+                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+                    if (bsOffcanvas) {
+                        bsOffcanvas.hide();
+                    }
+
+                    // Get header height for accurate scroll position
+                    const headerHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Particles.js configuration for Hero Section
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#004080" /* Primary color */
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#004080", /* Primary color */
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Program Modal Logic (for Academics Section)
+        const programModal = document.getElementById('programModal');
+        programModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const programType = button.getAttribute('data-program'); // Extract info from data-* attributes
+
+            const modalProgramTitle = programModal.querySelector('#modalProgramTitle');
+            const modalProgramDescription = programModal.querySelector('#modalProgramDescription');
+            const modalProgramFeatures = programModal.querySelector('#modalProgramFeatures');
+
+            // Clear previous features
+            modalProgramFeatures.innerHTML = '';
+
+            // Populate modal content based on program type
+            if (programType === 'undergraduate') {
+                modalProgramTitle.textContent = 'Undergraduate Studies';
+                modalProgramDescription.textContent = 'Our comprehensive undergraduate programs offer a strong foundation in diverse fields, fostering critical thinking and hands-on learning. Choose from over 50 majors and minors across arts, sciences, engineering, and business.';
+                const features = [
+                    'Personalized academic advising',
+                    'Access to cutting-edge research opportunities',
+                    'Vibrant student life and organizations',
+                    'Strong alumni network for career support'
+                ];
+                features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i data-lucide="check-circle" class="text-success me-2"></i> ${feature}`;
+                    modalProgramFeatures.appendChild(li);
+                });
+            } else if (programType === 'graduate') {
+                modalProgramTitle.textContent = 'Graduate Programs';
+                modalProgramDescription.textContent = 'Our advanced graduate programs are designed for aspiring researchers and professionals seeking to deepen their expertise. Explore Master\'s and Ph.D. degrees that combine rigorous academics with innovative research and practical application.';
+                const features = [
+                    'World-renowned faculty mentors',
+                    'Opportunities for interdisciplinary research',
+                    'Funding and scholarship opportunities',
+                    'Pathways to academic and industry leadership'
+                ];
+                features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i data-lucide="check-circle" class="text-success me-2"></i> ${feature}`;
+                    modalProgramFeatures.appendChild(li);
+                });
+            } else if (programType === 'professional') {
+                modalProgramTitle.textContent = 'Professional Development';
+                modalProgramDescription.textContent = 'Enhance your career and acquire new skills with our flexible professional development courses and certifications. Designed for working professionals, these programs offer practical knowledge and industry-relevant expertise.';
+                const features = [
+                    'Flexible online and in-person formats',
+                    'Industry-led instructors and workshops',
+                    'Networking opportunities with peers',
+                    'Certifications recognized by leading employers'
+                ];
+                features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i data-lucide="check-circle" class="text-success me-2"></i> ${feature}`;
+                    modalProgramFeatures.appendChild(li);
+                });
+            }
+            lucide.createIcons(); // Re-initialize Lucide icons within the modal content
+        });
+    </script>
 </body>
 </html>
